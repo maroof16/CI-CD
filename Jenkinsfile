@@ -5,11 +5,11 @@ pipeline {
         stage('git checkout') {
             steps{
                 script{
-                    gitcheckout{
+                gitcheckout{
                         branch: "main",
                         url: "https://github.com/maroof16/ci-cd.git"
-                    }
                 }
+              }
             }
         }
     }
