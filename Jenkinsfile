@@ -30,7 +30,7 @@ pipeline {
                 }
             }
         }
-        tage('Sonar Static Code Analysis') {
+        stage('Sonar Static Code Analysis') {
             when { expression { params.action == 'create' }}  
             steps{
                 script{
