@@ -1,10 +1,14 @@
+@Library{'Jenkins-shared-library'}
 pipeline {
     agent any 
     stages{
         stage('git checkout') {
             steps{
                 script{
-                    git branch: 'main', url: 'https://github.com/maroof16/ci-cd.git'
+                    gitcheckout{
+                        branch: "main",
+                        url: "https://github.com/maroof16/ci-cd.git"
+                    }
                 }
             }
         }
