@@ -5,7 +5,7 @@ pipeline {
         stage('git checkout') {
             steps{
                 script{
-                    git branch: "main",
+                    branch: "main",
                     url: "https://github.com/maroof16/ci-cd.git"
                 }
             }
