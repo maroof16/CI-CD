@@ -34,7 +34,7 @@ pipeline {
             when { expression { params.action == 'create' }}  
             steps{
                 script{
-                    def StaticCodeAnalysisID = 'sonarpass'
+                    def StaticCodeAnalysisID = 'sonar-token'
                     StaticCodeAnalysis(StaticCodeAnalysisID)
                 }
             }
