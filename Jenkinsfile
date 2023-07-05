@@ -48,8 +48,8 @@ pipeline {
         //         script{
         //             StaticCodeAnalysis()
         //         }
-            }
-        }
+        //    }
+        //}
         stage('mvn build') {
             when { expression { params.action == 'create' }}
             steps{
