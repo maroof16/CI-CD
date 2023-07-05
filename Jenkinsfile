@@ -39,5 +39,14 @@ pipeline {
                 }
             }
         }
+        stage('Static Code Quality') {
+            when { expression { params.action == 'create' }}  
+            steps{
+                script{
+                    //def StaticCodeAnalysisID = 'sonar-token'
+                    StaticCodeAnalysis()
+                }
+            }
+        }
     }
 }
