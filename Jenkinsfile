@@ -63,7 +63,7 @@ pipeline {
             steps{
                 script{
                    //dockerBuild("${params.Imagename}","${params.ImageTag}","${params.Appname}")
-                   dockerBuild('ImageName', 'Dockerfile', 'maroofshaikh09')
+                   dockerBuild('maroofshaikh09', 'Dockerfile', 'ImageName')
                 }
             }
         }
