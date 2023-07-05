@@ -62,8 +62,6 @@ pipeline {
             when { expression { params.action == 'create' }}
             steps{
                 script{
-                 //  dockerBuild("${params.Imagename}","${params.ImageTag}","${params.Appname}")
-                   //dockerBuild('javaapp', 'Dockerfile', 'maroofshaikh09')
                    dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
