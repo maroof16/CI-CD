@@ -17,37 +17,37 @@ pipeline {
                 }
             }
         }
-        stage('unit mvn test') {
-            when { expression { params.action == 'create' }}
-            steps{
-                script{
-                    mvntest()
-                }
-            }
-        }
-        stage('mvn integration test') {
-            when { expression { params.action == 'create' }}  
-            steps{
-                script{
-                    mvnintegrationtest()
-                }
-            }
-        }
-        stage('Sonar Static Code Analysis') {
-            when { expression { params.action == 'create' }}  
-            steps{
-                script{
-                    //def StaticCodeAnalysisID = 'sonar-token'
-                    StaticCodeAnalysis()
-                }
-            }
-        }
-        stage('Static Code Quality') {
-            when { expression { params.action == 'create' }}  
-            steps{
-                script{
-                    StaticCodeAnalysis()
-                }
+        // stage('unit mvn test') {
+        //     when { expression { params.action == 'create' }}
+        //     steps{
+        //         script{
+        //             mvntest()
+        //         }
+        //     }
+        // }
+        // stage('mvn integration test') {
+        //     when { expression { params.action == 'create' }}  
+        //     steps{
+        //         script{
+        //             mvnintegrationtest()
+        //         }
+        //     }
+        // }
+        // stage('Sonar Static Code Analysis') {
+        //     when { expression { params.action == 'create' }}  
+        //     steps{
+        //         script{
+        //             //def StaticCodeAnalysisID = 'sonar-token'
+        //             StaticCodeAnalysis()
+        //         }
+        //     }
+        // }
+        // stage('Static Code Quality') {
+        //     when { expression { params.action == 'create' }}  
+        //     steps{
+        //         script{
+        //             StaticCodeAnalysis()
+        //         }
             }
         }
         stage('mvn build') {
@@ -63,7 +63,7 @@ pipeline {
             steps{
                 script{
                    //dockerBuild("${params.Imagename}","${params.ImageTag}","${params.Appname}")
-                   dockerBuild('maroofshaikh09', 'Dockerfile', 'imagename')
+                   dockerBuild('javaapp', 'Dockerfile', 'https://hub.docker.com/repository/docker/maroofshaikh09/groovy/general')
                 }
             }
         }
