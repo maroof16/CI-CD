@@ -48,5 +48,13 @@ pipeline {
                 }
             }
         }
+        stage('mvn build') {
+            when { expression { params.action == 'create' }}
+            steps{
+                script{
+                    mvnCleanInstall()
+                }
+            }
+        }
     }
 }
