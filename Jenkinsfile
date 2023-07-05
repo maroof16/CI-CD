@@ -5,7 +5,7 @@ pipeline {
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
         string(name: 'ImageName',description: 'Name of the docker image', defaultValue:'javapp')
         string(name: 'ImageTaG',description: 'Tag of the docker image', defaultValue:'v1')
-        string(name: 'AppName',description: 'Name of the Application', defaultValue:'springboot')
+        string(name: 'DockerHubUser',description: 'Name of the Application', defaultValue:'maroofshaikh09')
     }
     stages{
         stage('git checkout') {
@@ -62,8 +62,9 @@ pipeline {
             when { expression { params.action == 'create' }}
             steps{
                 script{
-                   //dockerBuild("${params.Imagename}","${params.ImageTag}","${params.Appname}")
-                   dockerBuild('javaapp', 'Dockerfile', 'maroofshaikh09')
+                 //  dockerBuild("${params.Imagename}","${params.ImageTag}","${params.Appname}")
+                   //dockerBuild('javaapp', 'Dockerfile', 'maroofshaikh09')
+                   dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
         }
