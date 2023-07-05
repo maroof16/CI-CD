@@ -63,8 +63,8 @@ pipeline {
             steps{
                 script{
                    //dockerBuild("${params.Imagename}","${params.ImageTag}","${params.Appname}")
-                   dockerBuild('javaapp', 'Dockerfile', 'https://hub.docker.com/repository/docker/maroofshaikh09/groovy/general')
-                }
+                   dockerBuild('javaapp', 'Dockerfile', 'maroofshaikh09')
+               }
             }
         }
     }
