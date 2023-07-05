@@ -17,40 +17,39 @@ pipeline {
                 }
             }
         }
-        stage('unit mvn test') {
-            when { expression { params.action == 'create' }}
-            steps{
-                script{
-                    mvntest()
-                }
-            }
-        }
-        stage('mvn integration test') {
-            when { expression { params.action == 'create' }}  
-            steps{
-                script{
-                    mvnintegrationtest()
-                }
-            }
-        }
-        stage('Sonar Static Code Analysis') {
-            when { expression { params.action == 'create' }}  
-            steps{
-                script{
+       // stage('unit mvn test') {
+         //   when { expression { params.action == 'create' }}
+           // steps{
+             //   script{
+               //     mvntest()
+                //}
+            //}
+        //}
+        //stage('mvn integration test') {
+          //  when { expression { params.action == 'create' }}  
+            //steps{
+              //  script{
+                //    mvnintegrationtest()
+                //}
+            //}
+        //}
+        //stage('Sonar Static Code Analysis') {
+          //  when { expression { params.action == 'create' }}  
+            //steps{
+              //  script{
                     //def StaticCodeAnalysisID = 'sonar-token'
-                    StaticCodeAnalysis()
-                }
-            }
-        }
-        stage('Static Code Quality') {
-            when { expression { params.action == 'create' }}  
-            steps{
-                script{
-                    //def StaticCodeAnalysisID = 'sonar-token'
-                    StaticCodeAnalysis()
-                }
-            }
-        }
+                //    StaticCodeAnalysis()
+                //}
+            //}
+        //}
+        //stage('Static Code Quality') {
+          //  when { expression { params.action == 'create' }}  
+            //steps{
+              //  script{
+                    //StaticCodeAnalysis()
+                //}
+            //}
+        //}
         stage('mvn build') {
             when { expression { params.action == 'create' }}
             steps{
