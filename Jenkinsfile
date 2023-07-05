@@ -3,6 +3,9 @@ pipeline {
     agent any 
     parameters{
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
+        string(name: 'ImageName',description: 'Name of the docker image', defaultvale:'javapp')
+        string(name: 'ImageTaG',description: 'Tag of the docker image', defaultvale:'v1')
+        string(name: 'AppName',description: 'Name of the Application', defaultvale:'springboot')
     }
     stages{
         stage('git checkout') {
@@ -53,6 +56,14 @@ pipeline {
             steps{
                 script{
                     mvnCleanInstall()
+                }
+            }
+        }
+        stage('Docker image build') {
+            when { expression { params.action == 'create' }}
+            steps{
+                script{
+                   dockerBuild("${params.Imagename}","${params.ImageTag}","${params.Appname}")
                 }
             }
         }
