@@ -66,7 +66,7 @@ pipeline {
                }
             }
         }
-        stage('Docker image build') {
+        stage('Docker image delete') {
             when { expression { params.action == 'create' }}
             steps{
                 script{
