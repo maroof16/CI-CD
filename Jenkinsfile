@@ -86,7 +86,7 @@ pipeline {
             when { expression { params.action == 'create' }}
             steps{
                 script{
-                   dockerdelete()
+                   dockerdelete("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
         }
