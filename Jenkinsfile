@@ -66,5 +66,13 @@ pipeline {
                }
             }
         }
+        stage('Docker image build') {
+            when { expression { params.action == 'create' }}
+            steps{
+                script{
+                   dockerdelete()
+               }
+            }
+        }
     }
 }
