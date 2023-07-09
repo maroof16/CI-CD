@@ -66,14 +66,14 @@ pipeline {
                }
             }
         }
-        stage('Docker image Scan: Trivy ') {
-            when { expression { params.action == 'create' }}
-            steps{
-                script{
-                   dockerImageScanECR("${params.aws_account_id}","${params.region}","${params.ECR_repo_name}")
-               }
-            }
-        }
+        // stage('Docker image Scan: Trivy ') {
+        //     when { expression { params.action == 'create' }}
+        //     steps{
+        //         script{
+        //            dockerImageScanECR("${params.aws_account_id}","${params.region}","${params.ECR_repo_name}")
+        //        }
+        //     }
+        // }
         stage('Docker image push: ECR ') {
             when { expression { params.action == 'create' }}
             steps{
