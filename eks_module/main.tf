@@ -11,9 +11,6 @@
 #     type = Private
 #   }
 # }
-module "eks_vpc" {
-  source = "./modules/aws_vpc"
-}
 
 module "aws_eks_cluster" {
 
