@@ -100,48 +100,50 @@ pipeline {
                           terraform init 
                           terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.region}'
                           terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.region}' -auto-approve
+                          terraform desctroy -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.region}' -auto-approve
+
                       """
                   }
                 }
             }
         }
-        stage('Connect to EKS '){
-            when { expression {  params.action == 'create' } }
-        steps{
+//         stage('Connect to EKS '){
+//             when { expression {  params.action == 'create' } }
+//         steps{
 
-            script{
+//             script{
 
-                sh """
-                aws configure set aws_access_key_id "$ACCESS_KEY"
-                aws configure set aws_secret_access_key "$SECRET_KEY"
-                aws configure set region "${params.region}"
-                aws eks --region ${params.region} update-kubeconfig --name ${params.cluster}
-                """
-            }
-        }
-        } 
-        stage('Deployment on EKS Cluster'){
-            when { expression {  params.action == 'create' } }
-            steps{
-                script{
+//                 sh """
+//                 aws configure set aws_access_key_id "$ACCESS_KEY"
+//                 aws configure set aws_secret_access_key "$SECRET_KEY"
+//                 aws configure set region "${params.region}"
+//                 aws eks --region ${params.region} update-kubeconfig --name ${params.cluster}
+//                 """
+//             }
+//         }
+//         } 
+//         stage('Deployment on EKS Cluster'){
+//             when { expression {  params.action == 'create' } }
+//             steps{
+//                 script{
                   
-                  def apply = false
+//                   def apply = false
 
-                  try{
-                    input message: 'please confirm to deploy on eks', ok: 'Ready to apply the config ?'
-                    apply = true
-                  }catch(err){
-                    apply= false
-                    currentBuild.result  = 'UNSTABLE'
-                  }
-                  if(apply){
+//                   try{
+//                     input message: 'please confirm to deploy on eks', ok: 'Ready to apply the config ?'
+//                     apply = true
+//                   }catch(err){
+//                     apply= false
+//                     currentBuild.result  = 'UNSTABLE'
+//                   }
+//                   if(apply){
 
-                    sh """
-                      kubectl apply -f .
-                    """
-                  }
-                }
-            }
-        }    
-    }
+//                     sh """
+//                       kubectl apply -f .
+//                     """
+//                   }
+//                 }
+//             }
+//         }    
+     }
 }
