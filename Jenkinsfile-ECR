@@ -142,6 +142,5 @@ pipeline {
 //                   }
 //                 }
 //             }
-//                                  terraform destroy -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.region}' -auto-approve  }    
     }
 }
