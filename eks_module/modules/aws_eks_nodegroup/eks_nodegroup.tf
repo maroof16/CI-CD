@@ -12,7 +12,7 @@ resource "aws_eks_node_group" "eks_nodegroup" {
     capacity_type = "ON_DEMAND"
     disk_size = 20
     force_update_version = false
-    instance_types     = ["t3.micro"]
+    instance_types     = ["t2.medium"]
     version = "1.24"
 
     depends_on = [ 
